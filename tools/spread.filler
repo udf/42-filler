@@ -128,7 +128,6 @@ def own_pieces(ys, xs, map_data):
 	return num_pieces
 
 
-
 def center_of_mass(piece_data):
 	c_y, c_x = 0, 0
 	num_tiles = 0
