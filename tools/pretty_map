@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+import sys
+import re
+
+
+def rgb666(r, g, b):
+	return 16 + 36*r + 6*g + b
+
+o_color = rgb666(5, 1, 1)
+x_color = rgb666(1, 1, 5)
+
+
+def colour(c):
+    if c >= 0:
+        return f"\x1b[38;5;{c}m"
+    return "\x1b[39m"
+
+
+def pretty_map(h):
+	output = ""
+	output += "\x1b[2J\x1b[H"
+	input()
+	old_color = -1
+	for i in range(h):
+		line = re.match(r'^\d+\s+(.+)$', input()).group(1)
+		for c in line:
+			color = {
+				'o': o_color,
+				'x': x_color
+			}.get(c.lower(), -1)
+			if color != old_color:
+				output += colour(color)
+				old_color = color
+			output += c
+		output += '\n'
+	sys.stdout.write(output)
+
+
+while 1:
+	# wait for map line
+	try:
+		line = input()
+	except EOFError:
+		break
+	if 'fin' in line:
+		sys.stdout.write(colour(-1))
+		print(line)
+		continue
+	m = re.match(r'^Plateau (\d+) (\d+):', line)
+	if not m:
+		continue
+	h = int(m.group(1))
+	pretty_map(h)
