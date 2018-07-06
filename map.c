@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/06 16:39:18 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/06 16:57:23 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	get_map_size(char *line, t_info *info, t_map *map)
 
 	if (!ft_strnequ(line, "Plateau ", 8))
 		return ;
-	line = ft_strchr(line, ' ');
+	line = ft_strchr(line, ' ') + 1;
 	if (line)
 		map->h = ft_atoi(line);
-	line = ft_strchr(line + 1, ' ');
+	line = ft_strchr(line, ' ') + 1;
 	if (line)
 		map->w = ft_atoi(line);
 	if (info->map_w == 0 || info->map_h == 0)
@@ -49,7 +49,7 @@ static void	read_map(t_map *map)
 			free(line);
 			break ;
 		}
-		data = ft_strsub(line, 4, map->w);
+		data = ft_strlower(ft_strsub(line, 4, map->w));
 		vec_append(map->data, &data);
 		free(line);
 		i++;

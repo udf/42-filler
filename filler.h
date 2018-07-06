@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/06 16:33:21 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/06 16:54:19 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ typedef struct	s_token
 	t_vec		*data;
 	size_t		w;
 	size_t		h;
-	size_t		center_x;
-	size_t		center_y;
 	ssize_t		x_off;
 	ssize_t		y_off;
 }				t_token;
