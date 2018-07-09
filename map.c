@@ -19,10 +19,13 @@ static void	get_map_size(char *line, t_info *info, t_map *map)
 
 	if (!ft_strnequ(line, "Plateau ", 8))
 		return ;
-	line = ft_strchr(line, ' ') + 1;
+	line = ft_strchr(line, ' ');
 	if (line)
+    {
 		map->h = ft_atoi(line);
-	line = ft_strchr(line, ' ') + 1;
+        line++;
+    }
+	line = ft_strchr(line, ' ');
 	if (line)
 		map->w = ft_atoi(line);
 	if (info->map_w == 0 || info->map_h == 0)
