@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/06 16:57:23 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/09 20:04:49 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static void	get_map_size(char *line, t_info *info, t_map *map)
 		return ;
 	line = ft_strchr(line, ' ');
 	if (line)
-    {
+	{
 		map->h = ft_atoi(line);
-        line++;
-    }
+		line++;
+	}
 	line = ft_strchr(line, ' ');
 	if (line)
 		map->w = ft_atoi(line);
