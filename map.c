@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 21:43:23 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/09 22:22:05 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	get_map_size(char *line, t_info *info, t_map *map)
 {
 	map->w = 0;
 	map->h = 0;
-
 	if (!ft_strnequ(line, "Plateau ", 8))
 		return ;
 	line = ft_strchr(line, ' ');

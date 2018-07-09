@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/09 21:40:48 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/09 22:22:03 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	get_token_size(char *line, t_token *token)
 {
 	token->w = 0;
 	token->h = 0;
-
 	if (!ft_strnequ(line, "Piece ", 6))
 		return ;
 	line = ft_strchr(line, ' ');
