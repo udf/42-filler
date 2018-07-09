@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 20:11:06 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/09 21:13:07 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,39 @@
 # include "vec.h"
 #include <stdio.h> //aaa
 
+/*
+** Information about the game
+*/
 typedef struct	s_info
 {
 	char		us;
 	char		them;
-	size_t		map_w;
-	size_t		map_h;
+	ssize_t		map_w;
+	ssize_t		map_h;
 }				t_info;
 
+/*
+** Stores data about the map
+** The actual map data is a vector of char pointers
+*/
 typedef struct	s_map
 {
 	t_vec		*data;
-	size_t		w;
-	size_t		h;
+	ssize_t		w;
+	ssize_t		h;
 }				t_map;
 
+/*
+** Stores data about the token
+** The actual token data is a vector of char pointers
+** The width and height are the trimmed dimensions
+** The offsets are the left and top trim amount (used when printing the move)
+*/
 typedef struct	s_token
 {
 	t_vec		*data;
-	size_t		w;
-	size_t		h;
+	ssize_t		w;
+	ssize_t		h;
 	ssize_t		x_off;
 	ssize_t		y_off;
 }				t_token;
@@ -55,5 +68,6 @@ int		print_error(char *str);
 */
 int		get_game_info(t_info *p_info);
 int		get_map(t_info *info, t_map *map);
+int		get_token(t_token *token);
 
 #endif

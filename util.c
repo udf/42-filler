@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/06 16:03:50 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/09 21:42:57 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
+/*
+** Interprets a vector's data as an array of pointers and frees each one
+** After running this, the vector can safely be freed with vec_free
+*/
 void	clear_ptr_vec(t_vec *v)
 {
 	size_t	i;

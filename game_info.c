@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:28:07 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/06 16:29:59 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/09 21:41:04 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_game_info(t_info *p_info)
 {
 	char	*line;
 
-	if (get_next_line(0, &line) < 0)
+	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read player info line\n"));
 	ft_bzero(p_info, sizeof(t_info));
 	read_player(line, p_info);
