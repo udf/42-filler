@@ -6,31 +6,38 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 22:21:39 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 21:23:13 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
 /*
-** Interprets a vector's data as an array of pointers and frees each one
-** After running this, the vector can safely be freed with vec_free
+** Returns the pointer to a tile at the specified point on a map
+** returns NULL if the point is outside of the map
+** This is needed because the data is stored as a vector of rows (chars)
+** For example, the map:
+** ..X
+** .X.
+** X..
+** would be stored as "..X.X.X.." with a type_size of 3 bytes
 */
-void	clear_ptr_vec(t_vec *v)
+char	*get_tile_ptr(const t_map *map, const t_point p)
 {
-	size_t	i;
-	void	**data;
+	char *data;
 
-	if (!v)
-		return ;
-	i = 0;
-	data = (void **)v->data;
-	while (i < v->length)
-	{
-		free(data[i]);
-		i++;
-	}
-	v->length = 0;
+	if (p.x < 0 || p.y < 0 || p.x >= map->w || p.y >= map->h)
+		return (NULL);
+	data = (char *)map->data->data;
+	return (&data[p.y * map->h + p.x]);
+}
+
+char	get_tile(const t_map *map, const t_point p)
+{
+	char *tile;
+
+	tile = get_tile_ptr(map, p);
+	return (tile ? *tile : '\0');
 }
 
 int		print_error(char *str)

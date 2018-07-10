@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 18:55:45 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 21:20:53 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct	s_info
 
 /*
 ** Stores data about the map
-** The actual map data is a vector of char pointers
+** The actual map data is a vector of chars
+** A description of how the data is stored can be found at get_tile
 */
 typedef struct	s_map
 {
@@ -53,7 +54,7 @@ typedef struct	s_map
 
 /*
 ** Stores data about the token
-** The actual token data is a vector of char pointers
+** Pretty much the same as t_map with an offset
 ** The width and height are the trimmed dimensions
 ** The offsets are the left and top trim amount (used when printing the move)
 */
@@ -68,7 +69,8 @@ typedef struct	s_token
 /*
 ** Utilities
 */
-void	clear_ptr_vec(t_vec *v);
+char	*get_tile_ptr(const t_map *map, const t_point p);
+char	get_tile(const t_map *map, const t_point p);
 int		print_error(char *str);
 
 /*

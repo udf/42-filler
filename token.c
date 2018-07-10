@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/10 18:54:34 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 21:24:36 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void	read_token(t_token *token)
 	char	*data;
 	ssize_t	i;
 
+	token->data->length = 0;
+	token->data->type_size = (size_t)token->w;
 	i = 0;
 	while (i < token->h)
 	{
@@ -55,7 +57,7 @@ static void	read_token(t_token *token)
 			break ;
 		}
 		data = ft_strlower(ft_strdup(line));
-		vec_append(token->data, &data);
+		vec_append(token->data, data);
 		free(line);
 		i++;
 	}
@@ -64,17 +66,15 @@ static void	read_token(t_token *token)
 static int	validate_token(t_token *token)
 {
 	t_point i;
-	char	**data;
 	char	tile;
 
 	i.y = 0;
-	data = (char **)token->data->data;
 	while (i.y < token->h)
 	{
 		i.x = 0;
 		while (i.x < token->w)
 		{
-			tile = data[i.y][i.x];
+			tile = get_tile((t_map *)token, i);
 			if (tile != '*' && tile != '.')
 				return (1);
 			i.x++;
@@ -86,23 +86,23 @@ static int	validate_token(t_token *token)
 
 static void	trim_token(t_token *token)
 {
-	t_point min;
-	t_point max;
-	t_point i;
-	char	**data;
+	t_point	min;
+	t_point	max;
+	t_point	i;
+	char	tile;
 
 	min.x = token->w;
 	min.y = token->h;
 	max.x = 0;
 	max.y = 0;
 	i.y = 0;
-	data = (char **)token->data->data;
 	while (i.y < token->h)
 	{
 		i.x = 0;
 		while (i.x < token->w)
 		{
-			if (data[i.y][i.x] == '*')
+			tile = get_tile((t_map *)token, i);
+			if (tile == '*')
 			{
 				min.x = MIN(min.x, i.x);
 				min.y = MIN(min.y, i.y);
@@ -126,7 +126,6 @@ int			get_token(t_token *token)
 {
 	char	*line;
 
-	clear_ptr_vec(token->data);
 	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read token info line\n"));
 	get_token_size(line, token);
@@ -136,7 +135,7 @@ int			get_token(t_token *token)
 	read_token(token);
 	if (token->data->length != (size_t)token->h || validate_token(token))
 	{
-		clear_ptr_vec(token->data);
+		token->data->length = 0;
 		return (print_error("Failed to read valid token data\n"));
 	}
 	trim_token(token);

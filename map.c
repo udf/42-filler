@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 22:22:05 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 23:07:06 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	read_map(t_map *map)
 	char	*data;
 	ssize_t	i;
 
+	map->data->length = 0;
+	map->data->type_size = (size_t)map->w;
 	i = 0;
 	while (i < map->h)
 	{
@@ -62,7 +64,7 @@ static void	read_map(t_map *map)
 		}
 		// TODO: perhaps dont hardcode 3 char ruler width
 		data = ft_strlower(ft_strsub(line, 4, (size_t)map->w));
-		vec_append(map->data, &data);
+		vec_append(map->data, data);
 		free(line);
 		i++;
 	}
@@ -76,12 +78,11 @@ int			get_map(t_info *info, t_map *map)
 {
 	char	*line;
 
-	clear_ptr_vec(map->data);
 	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read map info line\n"));
 	get_map_size(line, info, map);
 	free(line);
-	if (info->map_w <= 0 || info->map_h <= 0 || map->w <= 0 || map->h <= 0)
+	if (map->w <= 0 || map->h <= 0)
 		return (print_error("Failed to read map size\n"));
 	if (map->w != info->map_w || map->h != info->map_h)
 		return (print_error("wrong map size\n"));
@@ -91,7 +92,7 @@ int			get_map(t_info *info, t_map *map)
 	read_map(map);
 	if (map->data->length != (size_t)map->h)
 	{
-		clear_ptr_vec(map->data);
+		map->data->length = 0;
 		return (print_error("Failed to read map\n"));
 	}
 	return (0);
