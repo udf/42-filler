@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 21:20:53 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 23:18:23 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct	s_info
 {
 	char		us;
 	char		them;
-	ssize_t		map_w;
-	ssize_t		map_h;
 }				t_info;
 
 /*
@@ -77,7 +75,7 @@ int		print_error(char *str);
 ** Input
 */
 int		get_game_info(t_info *p_info);
-int		get_map(t_info *info, t_map *map);
+int		get_map(t_map *map);
 int		get_token(t_token *token);
 
 #endif

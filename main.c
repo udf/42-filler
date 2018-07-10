@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 21:25:53 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 23:17:58 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(void)
 	token.data = vec_new(1, 0);
 	while (1)
 	{
-		if (get_map(&game_info, &map))
+		if (get_map(&map))
 			break ;
 		print_mapvec(map.data);
 		if (get_token(&token))

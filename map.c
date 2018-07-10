@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 23:07:06 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 23:18:59 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Also sets the game info's dimensions if they are unset
 ** If successful the map's w and h should both be > 0
 */
-static void	get_map_size(char *line, t_info *info, t_map *map)
+static void	get_map_size(char *line, t_map *map)
 {
 	map->w = 0;
 	map->h = 0;
@@ -32,11 +32,6 @@ static void	get_map_size(char *line, t_info *info, t_map *map)
 	line = ft_strchr(line, ' ');
 	if (line)
 		map->w = ft_atoi(line);
-	if (info->map_w == 0 || info->map_h == 0)
-	{
-		info->map_w = map->w;
-		info->map_h = map->h;
-	}
 	return ;
 }
 
@@ -74,18 +69,16 @@ static void	read_map(t_map *map)
 ** Reads an entire map from stdin and updates the game info and map
 ** If an error occurs, returns 1 else 0
 */
-int			get_map(t_info *info, t_map *map)
+int			get_map(t_map *map)
 {
 	char	*line;
 
 	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read map info line\n"));
-	get_map_size(line, info, map);
+	get_map_size(line, map);
 	free(line);
 	if (map->w <= 0 || map->h <= 0)
 		return (print_error("Failed to read map size\n"));
-	if (map->w != info->map_w || map->h != info->map_h)
-		return (print_error("wrong map size\n"));
 	if (get_next_line(0, &line) <= 0) // TODO: perhaps verify ruler length(/contents?)
 		return (print_error("Failed to read map ruler\n"));
 	free(line);
