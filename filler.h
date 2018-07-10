@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 21:13:07 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/10 18:55:45 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 # include "get_next_line.h"
 # include "vec.h"
 #include <stdio.h> //aaa
+
+/*
+** Your standard 2D point
+*/
+typedef struct	s_point
+{
+	ssize_t		x;
+	ssize_t		y;
+}				t_point;
 
 /*
 ** Information about the game
@@ -53,8 +62,7 @@ typedef struct	s_token
 	t_vec		*data;
 	ssize_t		w;
 	ssize_t		h;
-	ssize_t		x_off;
-	ssize_t		y_off;
+	t_point		off;
 }				t_token;
 
 /*
