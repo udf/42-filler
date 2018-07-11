@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 23:17:58 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/11 12:20:18 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void print_mapvec(t_vec *v)
+void	print_mapvec(t_vec *v)
 {
-	size_t i;
-	char *data;
+	size_t	i;
+	char	*data;
 
 	i = 0;
 	data = (char*)v->data;
@@ -27,7 +27,7 @@ void print_mapvec(t_vec *v)
 	}
 }
 
-int	main(void)
+int		main(void)
 {
 	t_info		game_info;
 	t_map		map;
@@ -48,5 +48,5 @@ int	main(void)
 	}
 	vec_free(&map.data);
 	vec_free(&token.data);
-	return 0;
+	return (0);
 }

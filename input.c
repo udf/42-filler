@@ -6,13 +6,13 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:19:31 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 12:04:53 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 12:18:09 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void	_read_map_size(char *line, t_map *map, const char *prefix)
+static void	internal_read_map_size(char *line, t_map *map, const char *prefix)
 {
 	if (!ft_strnequ(line, prefix, ft_strlen(prefix)))
 		return ;
@@ -29,7 +29,7 @@ static void	_read_map_size(char *line, t_map *map, const char *prefix)
 ** Reads the map size line (PREFIX HEIGHT WIDTH:)
 ** If successful the map's w and h should both be > 0
 */
-void	read_map_size(t_map *map, const char *prefix)
+void		read_map_size(t_map *map, const char *prefix)
 {
 	char *line;
 
@@ -37,7 +37,7 @@ void	read_map_size(t_map *map, const char *prefix)
 	map->h = 0;
 	if (get_next_line(0, &line) <= 0)
 		return ;
-	_read_map_size(line, map, prefix);
+	internal_read_map_size(line, map, prefix);
 	free(line);
 }
 
@@ -45,7 +45,7 @@ void	read_map_size(t_map *map, const char *prefix)
 ** Reads the map data from stdin
 ** if successful, map->data->length should equal map->h
 */
-void	read_map(t_map *map)
+void		read_map(t_map *map)
 {
 	char	*line;
 	char	*data;

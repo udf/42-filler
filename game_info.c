@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:28:07 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/09 21:41:04 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/11 12:17:29 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void read_player(char *line, t_info *p_info)
+static void	read_player(char *line, t_info *p_info)
 {
 	int		player_num;
 
@@ -33,7 +33,7 @@ static void read_player(char *line, t_info *p_info)
 	}
 }
 
-int	get_game_info(t_info *p_info)
+int			get_game_info(t_info *p_info)
 {
 	char	*line;
 

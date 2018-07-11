@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 12:06:54 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 12:59:36 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	validate_token(t_token *token)
 {
-	t_point i;
+	t_point	i;
 	char	tile;
 
 	i.y = 0;
