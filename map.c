@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 15:37:02 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 16:36:22 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			get_map(t_map *map)
 	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read map ruler\n"));
 	free(line);
-	read_map(map);
+	read_map_data(map);
 	if (map->data->length != (size_t)map->h)
 	{
 		map->data->length = 0;

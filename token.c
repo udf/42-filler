@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 15:27:45 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 16:36:25 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			get_token(t_token *token)
 	read_map_size((t_map *)token, "Piece ");
 	if (token->w <= 0 || token->h <= 0)
 		return (print_error("Failed to read token size\n"));
-	read_map((t_map *)token);
+	read_map_data((t_map *)token);
 	if (token->data->length != (size_t)token->h || validate_token(token))
 	{
 		token->data->length = 0;

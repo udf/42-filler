@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:19:31 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 15:38:38 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 16:36:11 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		read_map_size(t_map *map, const char *prefix)
 	free(line);
 }
 
-void		read_map(t_map *map)
+void		read_map_data(t_map *map)
 {
 	char	*line;
 	char	*data;
