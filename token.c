@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 12:59:36 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 13:08:13 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 static int	validate_token(t_token *token)
 {
-	t_point	i;
+	t_point	p;
 	char	tile;
 
-	i.y = 0;
-	while (i.y < token->h)
+	p = make_point(-1, 0);
+	while (map_iter((t_map *)token, &p))
 	{
-		i.x = 0;
-		while (i.x < token->w)
-		{
-			tile = get_tile((t_map *)token, i);
-			if (tile != '*' && tile != '.')
-				return (1);
-			i.x++;
-		}
-		i.y++;
+		tile = get_tile((t_map *)token, p);
+		if (tile != '*' && tile != '.')
+			return (1);
 	}
 	return (0);
 }
@@ -37,30 +31,20 @@ static void	trim_token(t_token *token)
 {
 	t_point	min;
 	t_point	max;
-	t_point	i;
-	char	tile;
+	t_point	p;
 
-	min.x = token->w;
-	min.y = token->h;
-	max.x = 0;
-	max.y = 0;
-	i.y = 0;
-	while (i.y < token->h)
+	min = make_point(token->w, token->h);
+	max = make_point(0, 0);
+	p = make_point(-1, 0);
+	while (map_iter((t_map *)token, &p))
 	{
-		i.x = 0;
-		while (i.x < token->w)
+		if (get_tile((t_map *)token, p) == '*')
 		{
-			tile = get_tile((t_map *)token, i);
-			if (tile == '*')
-			{
-				min.x = MIN(min.x, i.x);
-				min.y = MIN(min.y, i.y);
-				max.x = MAX(max.x, i.x);
-				max.y = MAX(max.y, i.y);
-			}
-			i.x++;
+			min.x = MIN(min.x, p.x);
+			min.y = MIN(min.y, p.y);
+			max.x = MAX(max.x, p.x);
+			max.y = MAX(max.y, p.y);
 		}
-		i.y++;
 	}
 
 	printf("min: %zd, %zd\n", min.x, min.y);

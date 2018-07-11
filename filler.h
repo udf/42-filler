@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 12:59:47 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 13:04:32 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct	s_token
 */
 char	*get_tile_ptr(const t_map *map, const t_point p);
 char	get_tile(const t_map *map, const t_point p);
+t_point	make_point(ssize_t x, ssize_t y);
+int		map_iter(const t_map *map, t_point *p);
 int		print_error(char *str);
 
 /*
