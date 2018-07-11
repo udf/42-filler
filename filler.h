@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 11:55:20 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 12:02:18 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		print_error(char *str);
 /*
 ** Input
 */
+void	read_map_size(t_map *map, const char *prefix);
 void	read_map(t_map *map);
 
 int		get_game_info(t_info *p_info);

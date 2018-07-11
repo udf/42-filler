@@ -6,33 +6,11 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 11:55:11 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 12:06:54 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-/*
-** Reads the token size line (Piece HEIGHT WIDTH:)
-** If successful the token's w and h should both be > 0
-*/
-static void	get_token_size(char *line, t_token *token)
-{
-	token->w = 0;
-	token->h = 0;
-	if (!ft_strnequ(line, "Piece ", 6))
-		return ;
-	line = ft_strchr(line, ' ');
-	if (line)
-	{
-		token->h = ft_atoi(line);
-		line++;
-	}
-	line = ft_strchr(line, ' ');
-	if (line)
-		token->w = ft_atoi(line);
-	return ;
-}
 
 static int	validate_token(t_token *token)
 {
@@ -95,14 +73,9 @@ static void	trim_token(t_token *token)
 */
 int			get_token(t_token *token)
 {
-	char	*line;
-
-	if (get_next_line(0, &line) <= 0)
-		return (print_error("Failed to read token info line\n"));
-	get_token_size(line, token);
-	free(line);
+	read_map_size((t_map *)token, "Piece ");
 	if (token->w <= 0 || token->h <= 0)
-		return (print_error("Invalid token size\n"));
+		return (print_error("Failed to read token size\n"));
 	read_map((t_map *)token);
 	if (token->data->length != (size_t)token->h || validate_token(token))
 	{
