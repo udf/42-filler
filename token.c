@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/10 21:24:36 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/11 11:55:11 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,35 +32,6 @@ static void	get_token_size(char *line, t_token *token)
 	if (line)
 		token->w = ft_atoi(line);
 	return ;
-}
-
-/*
-** Reads the actual token data from stdin
-** if successful, token->data->length should equal token->h
-*/
-static void	read_token(t_token *token)
-{
-	char	*line;
-	char	*data;
-	ssize_t	i;
-
-	token->data->length = 0;
-	token->data->type_size = (size_t)token->w;
-	i = 0;
-	while (i < token->h)
-	{
-		if (get_next_line(0, &line) <= 0)
-			break ;
-		if (ft_strlen(line) != (size_t)token->w)
-		{
-			free(line);
-			break ;
-		}
-		data = ft_strlower(ft_strdup(line));
-		vec_append(token->data, data);
-		free(line);
-		i++;
-	}
 }
 
 static int	validate_token(t_token *token)
@@ -132,7 +103,7 @@ int			get_token(t_token *token)
 	free(line);
 	if (token->w <= 0 || token->h <= 0)
 		return (print_error("Invalid token size\n"));
-	read_token(token);
+	read_map((t_map *)token);
 	if (token->data->length != (size_t)token->h || validate_token(token))
 	{
 		token->data->length = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:55:48 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 23:18:59 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/11 11:54:47 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,6 @@ static void	get_map_size(char *line, t_map *map)
 	if (line)
 		map->w = ft_atoi(line);
 	return ;
-}
-
-/*
-** Reads the actual map data from stdin
-** if successful, map->data->length should equal map->h
-*/
-static void	read_map(t_map *map)
-{
-	char	*line;
-	char	*data;
-	ssize_t	i;
-
-	map->data->length = 0;
-	map->data->type_size = (size_t)map->w;
-	i = 0;
-	while (i < map->h)
-	{
-		if (get_next_line(0, &line) <= 0)
-			break ;
-		if (ft_strlen(line) != (size_t)(map->w + 4))
-		{
-			free(line);
-			break ;
-		}
-		// TODO: perhaps dont hardcode 3 char ruler width
-		data = ft_strlower(ft_strsub(line, 4, (size_t)map->w));
-		vec_append(map->data, data);
-		free(line);
-		i++;
-	}
 }
 
 /*

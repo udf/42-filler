@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
+#    By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/25 07:39:20 by mhoosen           #+#    #+#              #
-#    Updated: 2018/07/09 21:29:08 by anonymous        ###   ########.fr        #
+#    Updated: 2018/07/11 11:55:39 by mhoosen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS=main.c util.c game_info.c map.c token.c
+SRCS=main.c util.c game_info.c map.c token.c input.c
 NAME=filler
 CFLAGS=-Wall -Wextra -Werror -Wconversion
 

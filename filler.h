@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/10 23:18:23 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/07/11 11:55:20 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int		print_error(char *str);
 /*
 ** Input
 */
+void	read_map(t_map *map);
+
 int		get_game_info(t_info *p_info);
 int		get_map(t_map *map);
 int		get_token(t_token *token);
