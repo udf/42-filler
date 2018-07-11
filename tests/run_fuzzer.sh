@@ -40,7 +40,7 @@ while true; do
 	wait $pid &> /dev/null
 	signal=$(( $? - 128 ))
 	if (( signal > 0 )); then
-		echo "$PROG_NAME returned signal $signal"
+		echo -e "\n$PROG_NAME returned signal $signal"
 		tee "$OUT_PATH/stdin" <<< "$fuzz_data"
 		break
 	fi
