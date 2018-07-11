@@ -6,22 +6,12 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 13:06:54 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 15:40:20 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-/*
-** Returns the pointer to a tile at the specified point on a map
-** returns NULL if the point is outside of the map
-** This is needed because the data is stored as a vector of rows (chars)
-** For example, the map:
-** ..X
-** .X.
-** X..
-** would be stored as "..X.X.X.." with a type_size of 3 bytes
-*/
 char	*get_tile_ptr(const t_map *map, const t_point p)
 {
 	char *data;
@@ -49,10 +39,6 @@ t_point	make_point(ssize_t x, ssize_t y)
 	return (p);
 }
 
-/*
-** Moves p to the next point in map
-** Returns 1 if p is a valid point
-*/
 int		map_iter(const t_map *map, t_point *p)
 {
 	p->x++;

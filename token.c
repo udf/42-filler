@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 13:08:13 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 15:27:45 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,10 @@ static void	trim_token(t_token *token)
 			max.y = MAX(max.y, p.y);
 		}
 	}
-
 	printf("min: %zd, %zd\n", min.x, min.y);
 	printf("max: %zd, %zd\n", max.x, max.y);
 }
 
-/*
-** Reads an entire token from stdin and updates the token
-** If an error occurs, returns 1 else 0
-*/
 int			get_token(t_token *token)
 {
 	read_map_size((t_map *)token, "Piece ");

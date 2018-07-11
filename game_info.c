@@ -6,13 +6,13 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:28:07 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 12:17:29 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/11 15:38:06 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void	read_player(char *line, t_info *p_info)
+static void	read_player(char *line, t_info *info)
 {
 	int		player_num;
 
@@ -23,26 +23,26 @@ static void	read_player(char *line, t_info *p_info)
 	player_num = ft_atoi(line + 10);
 	if (player_num == 1)
 	{
-		p_info->us = 'o';
-		p_info->them = 'x';
+		info->us = 'o';
+		info->them = 'x';
 	}
 	else if (player_num == 2)
 	{
-		p_info->us = 'x';
-		p_info->them = 'o';
+		info->us = 'x';
+		info->them = 'o';
 	}
 }
 
-int			get_game_info(t_info *p_info)
+int			get_game_info(t_info *info)
 {
 	char	*line;
 
 	if (get_next_line(0, &line) <= 0)
 		return (print_error("Failed to read player info line\n"));
-	ft_bzero(p_info, sizeof(t_info));
-	read_player(line, p_info);
+	ft_bzero(info, sizeof(t_info));
+	read_player(line, info);
 	free(line);
-	if (!p_info->us)
+	if (!info->us)
 		return (print_error("Failed to read player\n"));
 	return (0);
 }
