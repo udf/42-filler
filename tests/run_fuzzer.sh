@@ -25,11 +25,10 @@ while true; do
 
 	# Wait for timeout
 	pid=$!
-	start=$(date +%s)
+	start=$SECONDS
 	while kill -0 $pid &> /dev/null
 	do
-		elapsed=$(( $(date +%s) - start ))
-		if (( elapsed > 1 )); then
+		if (( SECONDS - start > 1 )); then
 			echo -n "Timeout: "
 			kill -9 $pid
 			break
