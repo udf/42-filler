@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 21:06:31 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 21:35:04 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "get_next_line.h"
 # include "vec.h"
 #include <stdio.h> //aaa
+
+//TODO: map data verification
+// fuzzer stdout verification
 
 /*
 ** Your standard 2D point
