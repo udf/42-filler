@@ -6,24 +6,22 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 16:52:06 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 17:01:55 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	print_mapvec(t_vec *v)
+void	print_map(const t_map *map)
 {
-	size_t	i;
-	char	*data;
+	t_point p;
 
-	i = 0;
-	data = (char*)v->data;
-	while (i < v->length)
+	p = make_point(-1, 0);
+	while (map_iter(map, &p))
 	{
-		write(1, data + i * v->type_size, v->type_size);
-		write(1, "\n", 1);
-		i++;
+		ft_putchar(map_get_tile(map, p));
+		if ((p.x + 1) % map->w == 0)
+			ft_putchar('\n');
 	}
 }
 
@@ -41,10 +39,10 @@ int		main(void)
 	{
 		if (get_map(&map))
 			break ;
-		print_mapvec(map.data);
+		print_map(&map);
 		if (get_token(&token))
 			break ;
-		print_mapvec(token.data);
+		print_map((t_map *)&token);
 	}
 	vec_free(&map.data);
 	vec_free(&token.data);

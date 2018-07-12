@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/12 16:00:29 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 17:18:46 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,28 @@ static int	validate_token(t_token *token)
 	return (0);
 }
 
+static void	shift_rows(t_token *token, ssize_t shift, size_t new_w)
+{
+	ssize_t	y;
+	char	*dst;
+	char	*src;
+
+	y = 0;
+	while (y < token->h)
+	{
+		dst = map_get_tile_ptr((t_map *)token, (t_point){0, y});
+		src = map_get_tile_ptr((t_map *)token, (t_point){shift, y});
+		ft_memmove((void *)dst, (void *)src, new_w);
+		y++;
+	}
+}
+
 static void	trim_token(t_token *token)
 {
 	t_point	min;
 	t_point	max;
 	t_point	p;
+	ssize_t	new_w;
 
 	min = make_point(token->w, token->h);
 	max = make_point(0, 0);
@@ -46,8 +63,11 @@ static void	trim_token(t_token *token)
 			max.y = MAX(max.y, p.y);
 		}
 	}
-	printf("min: %zd, %zd\n", min.x, min.y);
-	printf("max: %zd, %zd\n", max.x, max.y);
+	token->h = max.y - min.y + 1;
+	new_w = max.x - min.x + 1;
+	vec_del_n(token->data, (size_t)min.y);
+	shift_rows(token, min.x, (size_t)new_w);
+	token->w = new_w;
 }
 
 int			get_token(t_token *token)
