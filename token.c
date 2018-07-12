@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/12 17:18:46 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 21:28:55 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	trim_token(t_token *token)
 	vec_del_n(token->data, (size_t)min.y);
 	shift_rows(token, min.x, (size_t)new_w);
 	token->w = new_w;
+	token->off = make_point(-min.x, -min.y);
 }
 
 int			get_token(t_token *token)

@@ -6,11 +6,11 @@
 #    By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/25 07:39:20 by mhoosen           #+#    #+#              #
-#    Updated: 2018/07/12 16:00:52 by mhoosen          ###   ########.fr        #
+#    Updated: 2018/07/12 20:21:36 by mhoosen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS=main.c util.c map_util.c game_info.c map.c token.c input.c
+SRCS=main.c util.c map_util.c game_info.c map.c token.c input.c logic.c
 NAME=filler
 CFLAGS=-Wall -Wextra -Werror -Wconversion
 

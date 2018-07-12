@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 16:01:44 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 21:06:31 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ typedef struct	s_token
 	ssize_t		h;
 	t_point		off;
 }				t_token;
+
+/*
+**     __                _
+**    / /   ____  ____ _(_)____
+**   / /   / __ \/ __ `/ / ___/
+**  / /___/ /_/ / /_/ / / /__
+** /_____/\____/\__, /_/\___/
+**             /____/
+*/
+int	next_move(t_info *info, t_map *map, t_token *token, t_point *m_pos);
 
 /*
 **     ____                  __
@@ -128,6 +138,11 @@ char			map_get_tile(const t_map *map, const t_point p);
 ** Constructs a t_point
 */
 t_point			make_point(ssize_t x, ssize_t y);
+
+/*
+** Adds the x and y components of two t_points
+*/
+t_point			add_points(t_point *a, t_point *b);
 
 /*
 ** Moves p to the next point in map

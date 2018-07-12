@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 17:01:55 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 21:19:35 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ void	print_map(const t_map *map)
 	}
 }
 
+int		do_move(t_info *info, t_map *map, t_token *token)
+{
+	t_point p;
+
+	p = make_point(-1, 0);
+	while (next_move(info, map, token, &p))
+	{
+		printf("%zd %zd\n", p.x, p.y);
+	}
+	return 0;
+}
+
 int		main(void)
 {
 	t_info		game_info;
@@ -39,10 +51,12 @@ int		main(void)
 	{
 		if (get_map(&map))
 			break ;
-		print_map(&map);
+		//print_map(&map);
 		if (get_token(&token))
 			break ;
-		print_map((t_map *)&token);
+		//print_map((t_map *)&token);
+		if (do_move(&game_info, &map, &token))
+			break;
 	}
 	vec_free(&map.data);
 	vec_free(&token.data);

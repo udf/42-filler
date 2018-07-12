@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 15:59:12 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 21:19:26 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 t_point	make_point(ssize_t x, ssize_t y)
 {
-	t_point p;
+	return (t_point){x, y};
+}
 
-	p.x = x;
-	p.y = y;
-	return (p);
+t_point	add_points(t_point *a, t_point *b)
+{
+	return (t_point){a->x + b->x, a->y + b->y};
 }
 
 int		print_error(char *str)
