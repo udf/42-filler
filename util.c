@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 15:40:20 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 15:54:13 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_tile_ptr(const t_map *map, const t_point p)
 	if (p.x < 0 || p.y < 0 || p.x >= map->w || p.y >= map->h)
 		return (NULL);
 	data = (char *)map->data->data;
-	return (&data[p.y * map->h + p.x]);
+	return (&data[(size_t)p.y * map->data->type_size + (size_t)p.x]);
 }
 
 char	get_tile(const t_map *map, const t_point p)
