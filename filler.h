@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 15:39:38 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 16:01:44 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ int				get_token(t_token *token);
 ** X..
 ** would be stored as "..X.X.X.." with a type_size of 3 bytes
 */
-char			*get_tile_ptr(const t_map *map, const t_point p);
-char			get_tile(const t_map *map, const t_point p);
+char			*map_get_tile_ptr(const t_map *map, const t_point p);
+char			map_get_tile(const t_map *map, const t_point p);
 
 /*
 ** Constructs a t_point

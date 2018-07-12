@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/11 16:36:25 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/12 16:00:29 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	validate_token(t_token *token)
 	p = make_point(-1, 0);
 	while (map_iter((t_map *)token, &p))
 	{
-		tile = get_tile((t_map *)token, p);
+		tile = map_get_tile((t_map *)token, p);
 		if (tile != '*' && tile != '.')
 			return (1);
 	}
@@ -38,7 +38,7 @@ static void	trim_token(t_token *token)
 	p = make_point(-1, 0);
 	while (map_iter((t_map *)token, &p))
 	{
-		if (get_tile((t_map *)token, p) == '*')
+		if (map_get_tile((t_map *)token, p) == '*')
 		{
 			min.x = MIN(min.x, p.x);
 			min.y = MIN(min.y, p.y);
