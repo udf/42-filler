@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 11:28:31 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:38:35 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,15 @@ char			*map_get_tile_ptr(const t_map *map, const t_point p);
 char			map_get_tile(const t_map *map, const t_point p);
 
 /*
+** Moves p to the next point in map
+** Returns 1 if p is a valid point
+*/
+int				map_iter(const t_map *map, t_point *p);
+
+/*
 ** Returns a clamped point so that it is inside the map
 */
-t_point			map_clamp_point(const t_map *map, t_point p)
+t_point			map_clamp_point(const t_map *map, t_point p);
 
 /*
 ** Constructs a t_point
@@ -159,10 +165,16 @@ t_point			add_points(t_point a, t_point b);
 t_point			sub_points(t_point a, t_point b);
 
 /*
-** Moves p to the next point in map
-** Returns 1 if p is a valid point
+** Begins iteration of a rectangle defined by two points
 */
-int				map_iter(const t_map *map, t_point *p);
+void	iter_points_begin(t_point *p, t_point b1, t_point b2);
+
+/*
+** Advances to the next point in a rectangle defined by two points
+** Returns 1 if the new point is in the rectangle
+*/
+int		iter_points_next(t_point *p, t_point b1, t_point b2);
+
 
 /*
 ** Prints the specified string to stderr and returns 1
