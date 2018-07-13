@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 11:02:24 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:13:21 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ t_point			add_points(t_point *a, t_point *b);
 /*
 ** Subtracts the x and y components of two t_points
 */
-t_point	sub_points(t_point *a, t_point *b)
+t_point			sub_points(t_point *a, t_point *b);
 
 /*
 ** Moves p to the next point in map
