@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/12 21:28:55 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 10:40:04 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	validate_token(t_token *token)
 	return (0);
 }
 
-static void	shift_rows(t_token *token, ssize_t shift, size_t new_w)
+static void	shift_rows(t_token *token, int shift, size_t new_w)
 {
-	ssize_t	y;
+	int	y;
 	char	*dst;
 	char	*src;
 
@@ -48,7 +48,7 @@ static void	trim_token(t_token *token)
 	t_point	min;
 	t_point	max;
 	t_point	p;
-	ssize_t	new_w;
+	int		new_w;
 
 	min = make_point(token->w, token->h);
 	max = make_point(0, 0);
@@ -71,6 +71,27 @@ static void	trim_token(t_token *token)
 	token->off = make_point(-min.x, -min.y);
 }
 
+static void	compute_center(t_token *token)
+{
+	t_point	sum;
+	t_point	p;
+	int		n_tiles;
+
+	sum = make_point(0, 0);
+	p = make_point(-1, 0);
+	n_tiles = 0;
+	while (map_iter((t_map *)token, &p))
+	{
+		if (map_get_tile((t_map *)token, p) == '*')
+		{
+			sum = add_points(&sum, &p);
+			n_tiles++;
+		}
+	}
+	token->center = make_point(sum.x / n_tiles, sum.y / n_tiles);
+	printf("Center: %zd %zd\n", token->center.x, token->center.y);
+}
+
 int			get_token(t_token *token)
 {
 	read_map_size((t_map *)token, "Piece ");
@@ -83,5 +104,6 @@ int			get_token(t_token *token)
 		return (print_error("Failed to read valid token data\n"));
 	}
 	trim_token(token);
+	compute_center(token);
 	return (0);
 }

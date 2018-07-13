@@ -6,13 +6,13 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 21:19:26 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 10:31:32 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_point	make_point(ssize_t x, ssize_t y)
+t_point	make_point(int x, int y)
 {
 	return (t_point){x, y};
 }

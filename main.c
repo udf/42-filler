@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 21:19:35 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 10:40:25 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,35 @@ void	print_map(const t_map *map)
 	}
 }
 
+int		score(t_info *info, t_map *map, t_token *token, t_point *move)
+{
+
+}
+
 int		do_move(t_info *info, t_map *map, t_token *token)
 {
-	t_point p;
+	t_point	this_move;
+	int		this_score;
+	t_point	best_move;
+	int		best_score;
 
-	p = make_point(-1, 0);
-	while (next_move(info, map, token, &p))
+	this_move = make_point(-1, 0);
+	best_move = make_point(0, 0);
+	best_score = 0;
+	while (next_move(info, map, token, &this_move))
 	{
-		printf("%zd %zd\n", p.x, p.y);
+		this_score = score(info, map, token, &this_move);
+		if (this_score < best_score)
+		{
+			best_move = this_move;
+			best_score = this_score;
+		}
 	}
-	return 0;
+	ft_putnbr(best_move.y);
+	ft_putchar(' ');
+	ft_putnbr(best_move.x);
+	ft_putchar('\n');
+	return (0);
 }
 
 int		main(void)

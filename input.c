@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:19:31 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/11 16:36:11 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 10:29:06 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		read_map_data(t_map *map)
 {
 	char	*line;
 	char	*data;
-	ssize_t	i;
+	int		i;
 
 	map->data->length = 0;
 	map->data->type_size = (size_t)map->w;

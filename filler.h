@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 21:35:04 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 10:27:56 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 */
 typedef struct	s_point
 {
-	ssize_t		x;
-	ssize_t		y;
+	int			x;
+	int			y;
 }				t_point;
 
 /*
@@ -49,8 +49,8 @@ typedef struct	s_info
 typedef struct	s_map
 {
 	t_vec		*data;
-	ssize_t		w;
-	ssize_t		h;
+	int			w;
+	int			h;
 }				t_map;
 
 /*
@@ -62,9 +62,10 @@ typedef struct	s_map
 typedef struct	s_token
 {
 	t_vec		*data;
-	ssize_t		w;
-	ssize_t		h;
+	int			w;
+	int			h;
 	t_point		off;
+	t_point		center;
 }				t_token;
 
 /*
@@ -140,7 +141,7 @@ char			map_get_tile(const t_map *map, const t_point p);
 /*
 ** Constructs a t_point
 */
-t_point			make_point(ssize_t x, ssize_t y);
+t_point			make_point(int x, int y);
 
 /*
 ** Adds the x and y components of two t_points
