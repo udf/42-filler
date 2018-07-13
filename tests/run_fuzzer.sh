@@ -26,14 +26,18 @@ while true; do
 	# Wait for timeout
 	pid=$!
 	start=$SECONDS
+	timedout=0
 	while kill -0 $pid &> /dev/null
 	do
 		if (( SECONDS - start > 1 )); then
-			echo -n "Timeout: "
 			kill -9 $pid
+			timedout=1
 			break
 		fi
 	done
+	if (( timedout )); then
+		continue
+	fi
 
 	# check return value
 	wait $pid &> /dev/null

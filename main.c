@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 13:01:53 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 14:34:38 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ int		score(t_info *info, t_map *map, t_token *token, t_point move)
 	t_point	p1;
 	t_point	p2;
 	t_point	iter;
+	t_point rad;
 	int		score;
 
 	move = add_points(move, token->center);
-	p1 = map_clamp_point(map, sub_points(move, make_point(token->w, token->h)));
-	p2 = map_clamp_point(map, add_points(move, make_point(token->w, token->h)));
+	rad = make_point(token->w * 2, token->h * 2);
+	p1 = map_clamp_point(map, sub_points(move, rad));
+	p2 = map_clamp_point(map, add_points(move, rad));
 	iter_points_begin(&iter, p1, p2);
 	score = 0;
 	while (1)
 	{
 		if (map_get_tile(map, iter) == info->us)
+			score--;
+		if (map_get_tile(map, iter) == info->them)
 			score++;
 		if (!iter_points_next(&iter, p1, p2))
 			break ;
@@ -56,12 +60,11 @@ int		do_move(t_info *info, t_map *map, t_token *token)
 
 	this_move = make_point(-1, 0);
 	best_move = make_point(0, 0);
-	best_score = 9999999;
+	best_score = -999999;
 	while (next_move(info, map, token, &this_move))
 	{
 		this_score = score(info, map, token, this_move);
-		//printf("move at (%d, %d) -> %d\n", this_move.x, this_move.y, this_score);
-		if (this_score <= best_score)
+		if (this_score >= best_score)
 		{
 			best_move = this_move;
 			best_score = this_score;
@@ -85,16 +88,15 @@ int		main(void)
 		return (1);
 	map.data = vec_new(1, 0);
 	token.data = vec_new(1, 0);
+	game_info.origin = make_point(-1, -1);
 	while (1)
 	{
-		if (get_map(&map))
+		if (get_map(&game_info, &map))
 			break ;
-		//print_map(&map);
 		if (get_token(&token))
 			break ;
-		//print_map((t_map *)&token);
 		if (do_move(&game_info, &map, &token))
-			break;
+			break ;
 	}
 	vec_free(&map.data);
 	vec_free(&token.data);

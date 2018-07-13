@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 11:38:35 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 14:35:58 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "vec.h"
-#include <stdio.h> //aaa
-
-//TODO: map data verification
-// fuzzer stdout verification
 
 /*
 ** Your standard 2D point
@@ -39,6 +35,7 @@ typedef struct	s_info
 {
 	char		us;
 	char		them;
+	t_point		origin;
 }				t_info;
 
 /*
@@ -76,7 +73,8 @@ typedef struct	s_token
 ** /_____/\____/\__, /_/\___/
 **             /____/
 */
-int	next_move(t_info *info, t_map *map, t_token *token, t_point *m_pos);
+int				next_move(t_info *info, t_map *map, t_token *token,
+																t_point *m_pos);
 
 /*
 **     ____                  __
@@ -92,6 +90,8 @@ int	next_move(t_info *info, t_map *map, t_token *token, t_point *m_pos);
 ** If successful the map's w and h should both be > 0
 */
 void			read_map_size(t_map *map, const char *prefix);
+
+int				verify_map(t_map *map, const char *allowed, const char *req);
 
 /*
 ** Reads the map data from stdin
@@ -109,7 +109,7 @@ int				get_game_info(t_info *info);
 ** Reads an entire map from stdin and updates the map
 ** If an error occurs, returns 1 else 0
 */
-int				get_map(t_map *map);
+int				get_map(t_info *info, t_map *map);
 
 /*
 ** Reads an entire token from stdin and updates the token
@@ -167,14 +167,18 @@ t_point			sub_points(t_point a, t_point b);
 /*
 ** Begins iteration of a rectangle defined by two points
 */
-void	iter_points_begin(t_point *p, t_point b1, t_point b2);
+void			iter_points_begin(t_point *p, t_point b1, t_point b2);
 
 /*
 ** Advances to the next point in a rectangle defined by two points
 ** Returns 1 if the new point is in the rectangle
 */
-int		iter_points_next(t_point *p, t_point b1, t_point b2);
+int				iter_points_next(t_point *p, t_point b1, t_point b2);
 
+/*
+** Returns the Manhattan distance between two points
+*/
+int				point_dist(t_point a, t_point b);
 
 /*
 ** Prints the specified string to stderr and returns 1

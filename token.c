@@ -6,30 +6,15 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/13 11:17:15 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 14:34:50 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int	validate_token(t_token *token)
-{
-	t_point	p;
-	char	tile;
-
-	p = make_point(-1, 0);
-	while (map_iter((t_map *)token, &p))
-	{
-		tile = map_get_tile((t_map *)token, p);
-		if (tile != '*' && tile != '.')
-			return (1);
-	}
-	return (0);
-}
-
 static void	shift_rows(t_token *token, int shift, size_t new_w)
 {
-	int	y;
+	int		y;
 	char	*dst;
 	char	*src;
 
@@ -95,10 +80,15 @@ int			get_token(t_token *token)
 	if (token->w <= 0 || token->h <= 0)
 		return (print_error("Failed to read token size\n"));
 	read_map_data((t_map *)token);
-	if (token->data->length != (size_t)token->h || validate_token(token))
+	if (token->data->length != (size_t)token->h)
 	{
 		token->data->length = 0;
 		return (print_error("Failed to read valid token data\n"));
+	}
+	if (verify_map((t_map *)token, ".*", "*"))
+	{
+		token->data->length = 0;
+		return (print_error("Invalid token data\n"));
 	}
 	trim_token(token);
 	compute_center(token);
