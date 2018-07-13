@@ -6,14 +6,14 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 20:21:44 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/12 21:27:01 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:14:57 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
 static size_t	can_place(t_info *info, t_map *map, t_token *token,
-																t_point *m_pos)
+																t_point m_pos)
 {
 	t_point	t_pos;
 	size_t	num_overlaps;
@@ -23,7 +23,7 @@ static size_t	can_place(t_info *info, t_map *map, t_token *token,
 	t_pos = make_point(-1, 0);
 	while (map_iter((t_map *)token, &t_pos))
 	{
-		map_tile = map_get_tile(map, add_points(m_pos, &t_pos));
+		map_tile = map_get_tile(map, add_points(m_pos, t_pos));
 		if (map_get_tile((t_map *)token, t_pos) == '*')
 		{
 			if (map_tile == info->them)
@@ -44,7 +44,7 @@ int				next_move(t_info *info, t_map *map, t_token *token,
 	{
 		if (m_pos->x + token->w > map->w || m_pos->y + token->h > map->w)
 			continue ;
-		if (can_place(info, map, token, m_pos))
+		if (can_place(info, map, token, *m_pos))
 			return (1);
 	}
 	return (0);

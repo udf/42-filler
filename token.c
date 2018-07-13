@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/13 11:02:32 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:17:15 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	compute_center(t_token *token)
 	{
 		if (map_get_tile((t_map *)token, p) == '*')
 		{
-			sum = add_points(&sum, &p);
+			sum = add_points(sum, p);
 			n_tiles++;
 		}
 	}

@@ -6,9 +6,11 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:49:12 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 11:07:08 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:16:58 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "filler.h"
 
 int		print_error(char *str)
 {
