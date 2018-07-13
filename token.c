@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 21:13:14 by anonymous         #+#    #+#             */
-/*   Updated: 2018/07/13 10:40:04 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:02:32 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,8 @@ static void	trim_token(t_token *token)
 	{
 		if (map_get_tile((t_map *)token, p) == '*')
 		{
-			min.x = MIN(min.x, p.x);
-			min.y = MIN(min.y, p.y);
-			max.x = MAX(max.x, p.x);
-			max.y = MAX(max.y, p.y);
+			min = make_point(MIN(min.x, p.x), MIN(min.y, p.y));
+			max = make_point(MAX(max.x, p.x), MAX(max.y, p.y));
 		}
 	}
 	token->h = max.y - min.y + 1;
@@ -89,7 +87,6 @@ static void	compute_center(t_token *token)
 		}
 	}
 	token->center = make_point(sum.x / n_tiles, sum.y / n_tiles);
-	printf("Center: %zd %zd\n", token->center.x, token->center.y);
 }
 
 int			get_token(t_token *token)
