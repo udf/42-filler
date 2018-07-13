@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 10:27:56 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:02:24 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,11 @@ char			*map_get_tile_ptr(const t_map *map, const t_point p);
 char			map_get_tile(const t_map *map, const t_point p);
 
 /*
+** Clamps a point's x and y so that they are inside the map
+*/
+void			map_clamp_point(const t_map *map, t_point *p);
+
+/*
 ** Constructs a t_point
 */
 t_point			make_point(int x, int y);
@@ -147,6 +152,11 @@ t_point			make_point(int x, int y);
 ** Adds the x and y components of two t_points
 */
 t_point			add_points(t_point *a, t_point *b);
+
+/*
+** Subtracts the x and y components of two t_points
+*/
+t_point	sub_points(t_point *a, t_point *b)
 
 /*
 ** Moves p to the next point in map
