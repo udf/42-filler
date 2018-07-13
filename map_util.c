@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 15:58:37 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 10:35:56 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/13 11:28:01 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ char	map_get_tile(const t_map *map, const t_point p)
 	return (tile ? *tile : '\0');
 }
 
-void	map_clamp_point(const t_map *map, t_point *p)
+t_point	map_clamp_point(const t_map *map, t_point p)
 {
-	p->x = CLAMP(p->x, 0, map->w - 1);
-	p->y = CLAMP(p->y, 0, map->h - 1);
+	return (make_point(CLAMP(p.x, 0, map->w - 1), CLAMP(p.y, 0, map->h - 1)));
 }
 
 int		map_iter(const t_map *map, t_point *p)
