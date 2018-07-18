@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/18 17:12:15 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/18 21:34:14 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		score(t_info *info, t_map *map, t_token *token, t_point p_move)
 	p_move = add_points(p_move, token->center);
 	score_enemy = dist_sum(map, p_move, info->them);
 	score_self = dist_sum(map, p_move, info->us);
-	return (score_self*score_self - score_enemy);
+	return (score_enemy + score_self);
 }
 
 int		do_move(t_info *info, t_map *map, t_token *token)
@@ -44,11 +44,11 @@ int		do_move(t_info *info, t_map *map, t_token *token)
 
 	this_move = make_point(-1, 0);
 	best_move = make_point(0, 0);
-	best_score = -99999999;
+	best_score = 2147483647;
 	while (next_move(info, map, token, &this_move))
 	{
 		this_score = score(info, map, token, this_move);
-		if (this_score >= best_score)
+		if (this_score <= best_score)
 		{
 			best_move = this_move;
 			best_score = this_score;
@@ -70,8 +70,8 @@ int		main(void)
 
 	if (get_game_info(&game_info))
 		return (1);
-	map.data = vec_new(1, 0);
-	token.data = vec_new(1, 0);
+	map.data = vec_new(1, 1);
+	token.data = vec_new(1, 1);
 	game_info.origin = make_point(-1, -1);
 	while (1)
 	{
