@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/11 11:19:31 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 14:19:16 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/18 20:32:22 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		read_map_data(t_map *map)
 			free(line);
 			break ;
 		}
-		data = ft_strlower(ft_strdup(data));
+		ft_strlower(data);
 		vec_append(map->data, data);
 		free(line);
 		i++;
