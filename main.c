@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 11:51:47 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/18 09:24:08 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/18 17:12:15 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,14 @@ void	print_map(const t_map *map)
 	}
 }
 
-int		score(t_info *info, t_map *map, t_token *token, t_point move)
+int		score(t_info *info, t_map *map, t_token *token, t_point p_move)
 {
-	t_point	p1;
-	t_point	p2;
-	t_point	iter;
-	t_point rad;
-	int		score;
-
-	move = add_points(move, token->center);
-	rad = make_point(token->w * 2, token->h * 2);
-	p1 = map_clamp_point(map, sub_points(move, rad));
-	p2 = map_clamp_point(map, add_points(move, rad));
-	iter_points_begin(&iter, p1, p2);
-	score = 0;
-	while (1)
-	{
-		if (map_get_tile(map, iter) == info->us)
-			score--;
-		if (map_get_tile(map, iter) == info->them)
-			score++;
-		if (!iter_points_next(&iter, p1, p2))
-			break ;
-	}
-	return (score);
+	int		score_enemy;
+	int		score_self;
+	p_move = add_points(p_move, token->center);
+	score_enemy = dist_sum(map, p_move, info->them);
+	score_self = dist_sum(map, p_move, info->us);
+	return (score_self*score_self - score_enemy);
 }
 
 int		do_move(t_info *info, t_map *map, t_token *token)
@@ -60,7 +44,7 @@ int		do_move(t_info *info, t_map *map, t_token *token)
 
 	this_move = make_point(-1, 0);
 	best_move = make_point(0, 0);
-	best_score = -999999;
+	best_score = -99999999;
 	while (next_move(info, map, token, &this_move))
 	{
 		this_score = score(info, map, token, this_move);

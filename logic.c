@@ -6,11 +6,26 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 20:21:44 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 14:33:39 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/18 16:45:11 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int				dist_sum(t_map *map, const t_point src, char target)
+{
+	int		sum;
+	t_point	p;
+
+	sum = 0;
+	p = make_point(-1, 0);
+	while (map_iter(map, &p))
+	{
+		if (map_get_tile(map, p) == target)
+			sum += point_dist(src, p);
+	}
+	return (sum);
+}
 
 static size_t	can_place(t_info *info, t_map *map, t_token *token,
 																t_point m_pos)

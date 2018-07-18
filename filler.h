@@ -6,7 +6,7 @@
 /*   By: mhoosen <mhoosen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 12:11:15 by mhoosen           #+#    #+#             */
-/*   Updated: 2018/07/13 14:35:58 by mhoosen          ###   ########.fr       */
+/*   Updated: 2018/07/18 16:39:13 by mhoosen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ typedef struct	s_token
 */
 int				next_move(t_info *info, t_map *map, t_token *token,
 																t_point *m_pos);
+
+int				dist_sum(t_map *map, const t_point src, char target);
+
 
 /*
 **     ____                  __
