@@ -71,8 +71,8 @@ void		read_map_data(t_map *map)
 	char	*data;
 	int		i;
 
-	map->data->length = 0;
-	map->data->type_size = (size_t)map->w;
+	map->data.length = 0;
+	map->data.type_size = (size_t)map->w;
 	i = 0;
 	while (i < map->h)
 	{
@@ -86,7 +86,7 @@ void		read_map_data(t_map *map)
 			break ;
 		}
 		ft_strlower(data);
-		vec_append(map->data, data);
+		vec_append(&map->data, data);
 		free(line);
 		i++;
 	}

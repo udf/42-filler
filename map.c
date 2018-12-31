@@ -38,14 +38,14 @@ int			get_map(t_info *info, t_map *map)
 		return (print_error("Failed to read map ruler\n"));
 	free(line);
 	read_map_data(map);
-	if (map->data->length != (size_t)map->h)
+	if (map->data.length != (size_t)map->h)
 	{
-		map->data->length = 0;
+		map->data.length = 0;
 		return (print_error("Failed to read map data\n"));
 	}
 	if (verify_map(map, ".ox", "ox"))
 	{
-		map->data->length = 0;
+		map->data.length = 0;
 		return (print_error("Invalid map data\n"));
 	}
 	if (info->origin.x < 0 || info->origin.y < 0)

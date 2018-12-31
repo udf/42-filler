@@ -64,14 +64,14 @@ int		do_move(t_info *info, t_map *map, t_token *token)
 
 int		main(void)
 {
-	t_info		game_info;
-	t_map		map;
-	t_token		token;
+	t_info	    	game_info;
+	static t_map	map;
+	t_token	    	token;
 
 	if (get_game_info(&game_info))
 		return (1);
-	map.data = vec_new(1, 1);
-	token.data = vec_new(1, 1);
+    vec_init(&map.data, 1, 1);
+    vec_init(&token.data, 1, 1);
 	game_info.origin = make_point(-1, -1);
 	while (1)
 	{

@@ -48,7 +48,7 @@ static void	trim_token(t_token *token)
 	}
 	token->h = max.y - min.y + 1;
 	new_w = max.x - min.x + 1;
-	vec_del_n(token->data, (size_t)min.y);
+	vec_del_n(&token->data, (size_t)min.y);
 	shift_rows(token, min.x, (size_t)new_w);
 	token->w = new_w;
 	token->off = make_point(-min.x, -min.y);
@@ -80,14 +80,14 @@ int			get_token(t_token *token)
 	if (token->w <= 0 || token->h <= 0)
 		return (print_error("Failed to read token size\n"));
 	read_map_data((t_map *)token);
-	if (token->data->length != (size_t)token->h)
+	if (token->data.length != (size_t)token->h)
 	{
-		token->data->length = 0;
+		token->data.length = 0;
 		return (print_error("Failed to read valid token data\n"));
 	}
 	if (verify_map((t_map *)token, ".*", "*"))
 	{
-		token->data->length = 0;
+		token->data.length = 0;
 		return (print_error("Invalid token data\n"));
 	}
 	trim_token(token);

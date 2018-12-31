@@ -18,8 +18,8 @@ char	*map_get_tile_ptr(const t_map *map, const t_point p)
 
 	if (p.x < 0 || p.y < 0 || p.x >= map->w || p.y >= map->h)
 		return (NULL);
-	data = (char *)map->data->data;
-	return (&data[(size_t)p.y * map->data->type_size + (size_t)p.x]);
+	data = (char *)map->data.data;
+	return (&data[(size_t)p.y * map->data.type_size + (size_t)p.x]);
 }
 
 char	map_get_tile(const t_map *map, const t_point p)

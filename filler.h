@@ -45,7 +45,7 @@ typedef struct	s_info
 */
 typedef struct	s_map
 {
-	t_vec		*data;
+	t_vec		data;
 	int			w;
 	int			h;
 }				t_map;
@@ -58,7 +58,7 @@ typedef struct	s_map
 */
 typedef struct	s_token
 {
-	t_vec		*data;
+	t_vec		data;
 	int			w;
 	int			h;
 	t_point		off;
